@@ -9,7 +9,7 @@ class possibilities:
     else:
       return false;
       
-  def both_on(x,y):
+  def and(x,y):
     if x == 1 and y == 1:
       return (1,1)
     else:
