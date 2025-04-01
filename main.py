@@ -24,3 +24,5 @@ class gates:
 
 add [0,0,0,0] [0,0,0,0]
 
+#i could either just take the numbers and output them in binary or actuall code the gates and run it through that proccess.
+#so itd be like input > actual adder logic > output or input > binary logic > output
