@@ -46,11 +46,11 @@ def N2B():
     elif x == 1 and y == 1:
         x = 1
         c = 1
-        return state 
+        return x,c
 # to make a full gate we need to add filtering this is best done by first putting the two inputs through a xor gate to already filter their result where it changes is you then have to account for the carry in, so your creating two new possibilites. to check how the carry could be activated ( a +b B+c or a and b.)
 # basically your nesting the half adders and once 2bits are on or like an adder should carry, it turns off so that the next adder knows "oh hey, i should add this place anymore sincec i added it before and its moved up"
 #full adder 1 bit
 def fa1b(x,y,c):
-    a = ha1b(x,y)
-    b = 
+    a = ha1b(x,y) #outputs into b the original 
+    b = ha1b(x,c)
     
