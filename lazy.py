@@ -71,9 +71,9 @@ def use_addr():
     for i in str2:
         i = int(i)
         setv[n] = setv[n],i
-          n += 1
+        n += 1
     setv.reverse()
-    return setv[]
+    return setv
 
 #stands for unlimited addr idk so future would be like use_addr then ua() where ua woould use use_adder output for its iputs and it basically should be
 # it should decode and loop 1bit
@@ -83,13 +83,17 @@ def ua(setv):
     for i in setv:
         fa = ""
         x,y = setv[n]
-        if n = 0:
+        if n == 0:
             s,c = ha1b(x,y)
-            s = str(s)
-            fa.join(x)
+            s = str('{s}')
+            fa.join(s)
             continue
         else: 
             s,c = fa1b(x,y,c)
             fa.join(s)
         n += 1
-setv[]= use_addr()
+    return fa
+
+setv= use_addr()
+result = ua(setv)
+print(result)
