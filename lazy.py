@@ -49,12 +49,11 @@ def ha1b(x,y):
         x = 0
         y = 1
         return x,y
-# to make a full gate we need to add filtering this is best done by first putting the two inputs through a xor gate to already filter their result where it changes is you then have to account for the carry in, so your creating two new possibilites. to check how the carry could be activated ( a +b B+c or a and b.)
-# basically your nesting the half adders and once 2bits are on or like an adder should carry, it turns off so that the next adder knows "oh hey, i should add this place anymore sincec i added it before and its moved up"
-#full adder 1 bit(x,y) #outputs into b the originor 
+#full 1 bit adder
 def fa1b(x,y,c):
     x,y = ha1b(0,1)
     a,b=ha1b(x,1)
     if y == 1 or b == 1:
         y = 1
         b = 1
+    #x and y initaly are the two inputs, and c is the carry then they reasigned as x is sum and y is carry, which x and carry get put into nexcxt adder and y gets saved to compare.
