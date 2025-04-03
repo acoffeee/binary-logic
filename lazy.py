@@ -53,8 +53,8 @@ def ha1b(x,y):
 # basically your nesting the half adders and once 2bits are on or like an adder should carry, it turns off so that the next adder knows "oh hey, i should add this place anymore sincec i added it before and its moved up"
 #full adder 1 bit(x,y) #outputs into b the originor 
 def fa1b(x,y,c):
-    x,y = ha1b(0,1)
-    a,b=ha1b(x,1)
+    x,y = ha1b(x,y)
+    a,b=ha1b(x,c)
     if y == 1 or b == 1:
         y = 1
         b = 1
@@ -80,27 +80,30 @@ def use_addr():
 def ua(setv):
     #n is simply a pointer to point at your placec.
     n = 0
-    fa = ""
+    RA= []
+    answer = ""
     for i in setv:
         x , y = setv[n]
-        print(x,y)
+        c = 0
+        #print(x,y)
         if n == 0:
-            s,c = ha1b(x,y)
-            print(s,c)
-            q = str(s)
-            fa = fa + fa.join(q)
-            print("fa:" + fa)
+            x , c = ha1b(x,y)
+            #print(x,c)
+            x = str(x)
+            RA.append(x)
             n +=1
             continue
         else: 
-            s,c = fa1b(x,y,c)
-            print(s,c)
-            q = str(s)
-            fa = fa + fa.join(q)
-            print("fa: " + fa)
+            x , c = fa1b(x,y,c)
+            x = str(x)
+            RA.append(x)
             n +=1
             continue
-    return fa
+    RA.reverse()
+    print(RA)
+    answer = answer.join(RA)
+    print(answer)
+    return answer
 
 setv= use_addr()
 print(setv)
