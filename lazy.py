@@ -58,3 +58,35 @@ def fa1b(x,y,c):
     if y == 1 or b == 1:
         y = 1
         b = 1
+#make something that is able to add any length of strings using two lists i think is smartest then i can make one that actually is complete
+def use_addr():
+    setv = []
+    str1 = input("what is your first set of bits? please adjust to be same size as second")
+    str2 = input("what is your second set of bits? please make same length as first")
+    n = int(0)
+    for i in str1:
+        i = int(i)
+        setv.append(i)
+    for i in str2:
+        i = int(i)
+        setv[n] = setv[n],i
+          n += 1
+    setv.reverse()
+    return setv[]
+
+#stands for unlimited addr idk so future would be like use_addr then ua() where ua woould use use_adder output for its iputs and it basically should be
+# it should decode and loop 1bit
+def ua(setv):
+    #n is simply a pointer to point at your placec.
+    n = 0
+    for i in setv:
+        fa = ""
+        x,y = setv[n]
+        if n = 0:
+            s,c = ha1b(x,y)
+            s = str(s)
+            fa.join(x)
+            continue
+        else: 
+            fa1b(x,y,c)
+        n += 1
