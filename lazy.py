@@ -58,6 +58,7 @@ def fa1b(x,y,c):
     if y == 1 or b == 1:
         y = 1
         b = 1
+    return a,b
 #make something that is able to add any length of strings using two lists i think is smartest then i can make one that actually is complete
 def use_addr():
     setv = []
@@ -88,5 +89,7 @@ def ua(setv):
             fa.join(x)
             continue
         else: 
-            fa1b(x,y,c)
+            s,c = fa1b(x,y,c)
+            fa.join(s)
         n += 1
+setv[]= use_addr()
