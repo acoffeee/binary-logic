@@ -51,9 +51,60 @@ def ha1b(x,y):
         return x,y
 #full 1 bit adder
 def fa1b(x,y,c):
-    x,y = ha1b(0,1)
-    a,b=ha1b(x,1)
+    x,y = ha1b(x,y)
+    a,b=ha1b(x,c)
     if y == 1 or b == 1:
         y = 1
         b = 1
-    #x and y initaly are the two inputs, and c is the carry then they reasigned as x is sum and y is carry, which x and carry get put into nexcxt adder and y gets saved to compare.
+    return a,b
+  
+#make something that is able to add any length of strings using two lists i think is smartest then i can make one that actually is complete
+def use_addr():
+    setv = []
+    str1 = input("what is your first set of bits? please adjust to be same size as second")
+    str2 = input("what is your second set of bits? please make same length as first")
+    n = int(0)
+    for i in str1:
+        i = int(i)
+        setv.append(i)
+    for i in str2:
+        i = int(i)
+        setv[n] = setv[n],i
+        n += 1
+    setv.reverse()
+    return setv
+
+#stands for unlimited addr idk so future would be like use_addr then ua() where ua woould use use_adder output for its iputs and it basically should be
+# it should decode and loop 1bit
+def ua(setv):
+    #n is simply a pointer to point at your placec.
+    n = 0
+    RA= []
+    answer = ""
+    for i in setv:
+        x , y = setv[n]
+        c = 0
+        #print(x,y)
+        if n == 0:
+            x , c = ha1b(x,y)
+            #print(x,c)
+            x = str(x)
+            RA.append(x)
+            n +=1
+            continue
+        else: 
+            x , c = fa1b(x,y,c)
+            x = str(x)
+            RA.append(x)
+            n +=1
+            continue
+    RA.reverse()
+    print(RA)
+    answer = answer.join(RA)
+    print(answer)
+    return answer
+
+setv= use_addr()
+print(setv)
+result = ua(setv)
+print(result + "test")
