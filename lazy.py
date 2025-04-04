@@ -1,11 +1,12 @@
 
 def menu():
-    x = int(input("what would you like to do? \n 1: Binary to number 2: number to binary: "))
+    x = int(input("what would you like to do? \n 1: Binary to number 2: number to binary: \n 3: add 2 binary strings together"))
     if x == 1:
         B2N()
-    else:
+    elif x ==2:
         N2B()
-#answer = 
+    elif x==3:
+        Puttogether()
 #b2n is binary to normal
 # NP = 0
 def B2N():
@@ -61,8 +62,12 @@ def fa1b(x,y,c):
 #make something that is able to add any length of strings using two lists i think is smartest then i can make one that actually is complete
 def use_addr():
     setv = []
-    str1 = input("what is your first set of bits? please adjust to be same size as second")
-    str2 = input("what is your second set of bits? please make same length as first")
+    str1 = input("what is your first set of bits? please adjust to be same size as second: \n")
+    str2 = input("what is your second set of bits? please make same length as first: \n")
+    if len(str1) != len(str2):
+        print("bruddah get good at counting and make them the same damn length bruddah")
+        use_addr()
+
     n = int(0)
     for i in str1:
         i = int(i)
@@ -81,9 +86,9 @@ def ua(setv):
     n = 0
     RA= []
     answer = ""
+    c = 0
     for i in setv:
         x , y = setv[n]
-        c = 0
         #print(x,y)
         if n == 0:
             x , c = ha1b(x,y)
@@ -98,13 +103,18 @@ def ua(setv):
             RA.append(x)
             n +=1
             continue
+    c = str(c)
+    RA.append(c)
+    # bascially accounts for overflow carry or what ever idk 
     RA.reverse()
     print(RA)
     answer = answer.join(RA)
     print(answer)
     return answer
 
-setv= use_addr()
-print(setv)
-result = ua(setv)
-print(result + "test")
+def Puttogether():
+    setv= use_addr()
+    print(setv)
+    result = ua(setv)
+    return result
+#do say eqn = puttogether to do the thing and store or just regular. 
