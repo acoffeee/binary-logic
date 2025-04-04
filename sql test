@@ -1,1 +1,42 @@
+import requests
 
+def search_anime_anilist(title):
+    url = 'https://graphql.anilist.co'  # AniList GraphQL endpoint
+
+    # GraphQL query
+    query = '''
+    query ($title: String) {
+        Page(page: 1, perPage: 5) {
+            media(search: $title, type: ANIME) {
+                id
+                title {
+                    romaji
+                    english
+                }
+                description
+            }
+        }
+    }
+    '''
+
+    variables = {'title': title}
+
+    response = requests.post(url, json={'query': query, 'variables': variables})
+
+    if response.status_code == 200:
+        data = response.json()
+        if data.get('data') and data['data']['Page']['media']:
+            animes = data['data']['Page']['media']
+            for anime in animes:
+                print(f'Title: {anime["title"]["english"] if anime["title"]["english"] else anime["title"]["romaji"]}')
+                print(f'ID: {anime["id"]}')
+                print(f'Description: {anime["description"][:2000]}...')  # First 200 characters of description
+                print('-' * 40)
+        else:
+            print('No anime found.')
+    else:
+        print(f'Error: {response.status_code}, {response.text}')
+
+if __name__ == '__main__':
+    search_term = input('Enter anime title to search: ')
+    search_anime_anilist(search_term)
