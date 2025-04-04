@@ -49,9 +49,7 @@ def ha1b(x,y):
         x = 0
         y = 1
         return x,y
-# to make a full gate we need to add filtering this is best done by first putting the two inputs through a xor gate to already filter their result where it changes is you then have to account for the carry in, so your creating two new possibilites. to check how the carry could be activated ( a +b B+c or a and b.)
-# basically your nesting the half adders and once 2bits are on or like an adder should carry, it turns off so that the next adder knows "oh hey, i should add this place anymore sincec i added it before and its moved up"
-#full adder 1 bit(x,y) #outputs into b the originor 
+#full 1 bit adder
 def fa1b(x,y,c):
     x,y = ha1b(x,y)
     a,b=ha1b(x,c)
@@ -59,6 +57,7 @@ def fa1b(x,y,c):
         y = 1
         b = 1
     return a,b
+  
 #make something that is able to add any length of strings using two lists i think is smartest then i can make one that actually is complete
 def use_addr():
     setv = []

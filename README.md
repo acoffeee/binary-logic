@@ -1,1 +1,1 @@
-# binary-logic
+i habve decided pain. this project has a 20% chance of turning into a full cpu unit. potentiallty with a custom isa. but like probablty not but i think itd be cool if i did it so we'll see, could be fun but probably not. the resist to just use preexisting things is gonna be high but alast things like registers wil atleast be defined or something idk this probably wont happen but idk
