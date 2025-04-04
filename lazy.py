@@ -1,4 +1,4 @@
-
+# i probabably couldve made a bit adder easier by simply just like kinda...putting two inputs through b2n then adding the result then doing n2b but whatever i guess. i guess the next level would be bit to machine code then machine code to bit but thats not happening lmao.
 def menu():
     x = int(input("what would you like to do? \n 1: Binary to number 2: number to binary: \n 3: add 2 binary strings together"))
     if x == 1:
