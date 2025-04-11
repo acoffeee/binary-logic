@@ -100,19 +100,110 @@ def get_anilist_data(username):
               })
         # Sort by score (highest first)
         sorted_entries = sorted(entries, key=lambda x: x["score"], reverse=True)
-#
+        temp = 0
+        usersystem = 0
+        def findlowerandupperbound():
+            for scores in entries:
+                score = scores["score"]
+                temp += score
+            
         print("\nCompleted Anime List (Sorted by Score):")
+        
         Great_anime = []
         score = 0
         relavence = 0
+        #when good or bad is 0, that implys bad and the top tags will start to become "dont pick if anime has alof of this tag"
+        #1 implys mediocre anime, this will tell it that "high percent tags here are honestly jsut to balance it out and give more weight. but it may show a hit or miss genre if one is detected alot in which case i may try, when making the bot that anime with alot of those tags are to be completely randomly chosen"
+        #2 implys good, high percent tags in this will say "please reccomend me anime with these"
+        #still have to decide if i should use combos or have each tag maybe have an indiviual weight. 
+        #if i do individual tbh ill probably make a part in the script to combind tags to make anime to reccomend any way so maybe combos are the way to go lmao
+        #gob = good or bad
+        # 1 is bad 2 is mid 3 is good
+        gob = 0
+        # create a dict thats like {tags: lgbtq: {2,23,4,5,32} harem:{3.4.2.1.3.5}}
+        #these tags may be named good bad or mid, but really their just like the amount of times the tag shwos up in anime that youve rated above 8, 5, or 0.
+        #also only counting tags above 50% FOR NOW
+        # this scans if the tag is above a percent, then what the anime is rated that the tag is in.
+        #may change the header to be good mid and bad anime then have relavence tracking.
+        #good mid or bad relates to what the anime is rated
+        tag_weighting = {
+            "good":{"very relavent":{}, "mid relavent":{}, "hardly":{}},
+            "mid": {"very relavent":{}, "mid relavent":{}, "hardly":{}},
+            "bad":{"very relavent":{}, "mid relavent":{}, "hardly":{}}
+          }
+        
+        #relavence= {
+        #    "very_relavent":{
+        #      "good_tags":{},
+        #      "mid_tags":{},
+        #      "bad_tags":{}
+        #    }, 
+        #      "mid_relavence":{
+        #        "good_tags":{},
+        #        "mid_tags":{},
+        #        "bad_tags":{}
+        #    },
+        #      "not_relavence":{
+        #          "good_tags":{},
+        #          "mid_tags":{},
+        #          "bad_tags":{}
+        #    }
+        #      
+        #}
+        temp = 0
+        mrt = ()
+        p = 0
+        n = 0
+        tag_set = []
         for entry in sorted_entries:
             score = entry['score']
+            name = entry['title']
+            if name == 'None':
+                name = entry['title']['native']
+            tag_set.append([name])
             relavence = entry['tags']
-            if score < 8:
-                break
-            Great_anime.append({entry['title']}) 
-            print(f"- {entry['title']} ({entry['episodes']} eps) | genres: {entry['tags']} Score: {entry['score']}")
-            
+            if score >= 8:
+                gob = 3
+            elif score >=5:
+                gob=2
+            else:
+                gob =1
+                
+                #tag_set.append(entry['title'])
+                #print(tag_set)
+            #print(f"- {entry['title']} ({entry['episodes']} eps) Score: {entry['score']}")
+            for tag in entry['tags']:
+                relavent = tag['rank']
+                #print(tag_set)
+                if p == 1:
+                    ber = ber + "," + tag['name']
+                else:
+                    ber = tag['name']
+                thing =  tag['name']
+                p =1
+                if relavent <= 80:
+                    n+=1
+                    break
+                else:
+                    tag_set[n].append(thing)
+        for i in tag_set:
+            print(i)
+        url = "https://graphql.anilist.co"
+        ql ='''
+         query ($tag: String){
+              Media(tag: $tag){
+                title{
+                  english
+                } 
+              }
+            }
+            '''
+        yeah = "a"
+        no = 'harem'
+        variables = {"tag_in": "ecchi"}
+        yurrrr = requests.post(url, json= {'query': ql, 'variables': variables})
+        yurrrr.json()
+        print(yurrrr)
     else:
         print("Error fetching data.")
 
@@ -120,3 +211,4 @@ def get_anilist_data(username):
 #username = input("Enter AniList username: ")
 username = "Coffeee"
 get_anilist_data(username)
+
